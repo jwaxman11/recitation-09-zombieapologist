@@ -5,8 +5,13 @@ def fib_recursive(n, counts):
     each time fib_recursive(i, counts) is called.
     """    
     counts[n] += 1
-    ###TODO
-    pass
+    if n == 0:
+      return 0
+    elif n ==1:
+      return 1
+    else:
+      return fib_recursive(n-1,counts) + fib_recursive(n-2,counts)
+
     
 def test_fib_recursive():
     n = 10
@@ -16,8 +21,17 @@ def test_fib_recursive():
     print(sum(counts))
     
 def fib_top_down(n, fibs):
-    ###TODO
-    pass
+    if n == 0:
+      fibs[0] = 0
+      return 0
+    elif n == 1:
+      fibs[1] = 1
+      return 1
+    elif fibs[n] != -1:
+      return fibs[n]
+    else:
+      fibs[n] = fib_top_down(n-1, fibs) + fib_top_down(n-2, fibs)
+      return fibs[n]
 
 def test_fib_top_down():
     n = 10
@@ -26,18 +40,18 @@ def test_fib_top_down():
     print(fibs)
 
 def fib_bottom_up(n):
-    ###TODO
-    pass
+    val_list = []
+
+    for i in range(n + 1):
+      if i == 0:
+        val_list.append(0)
+      elif i == 1:
+        val_list.append(1)
+      else:
+        val_list.append(val_list[i-1] + val_list[i-2])
+    
+    return val_list[n]
 
 def test_fib_bottom_up():
     n = 10
     assert fib_bottom_up(n) == 55
-
-
-def fib_bottom_up_better(n):
-    ###TODO
-    pass
-
-def test_fib_bottom_up_better():
-    n = 10
-    assert fib_bottom_up_better(n) == 55
